@@ -19,7 +19,7 @@ ITS: $(ITS_EXECUTABLE)
 
 RMCRAG: $(RMCRAG_EXECUTABLE)
 
-$(ITS_EXECUTABLE): $(ITS_OBJS)
+$(ITS_EXECUTABLE): $(ITS_OBJECTS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C++ Linker'
 	g++  -o "ITS" $(ITS_OBJS)
