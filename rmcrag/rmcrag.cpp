@@ -222,7 +222,7 @@ Element* rmcrag(const std::set<int> clusterings, const double **pweight, int p, 
 
 double** load_matrix(const char *in_file_name, unsigned int* p) {
    	FILE  *in;
-   	FILE  *out;
+   	FILE  *out = NULL;
 	double **pweight;
 	int i, j,lo,k;
 	double w;
@@ -323,9 +323,10 @@ int main(int argc, char **argv) {
 
 	cout << "RMCRAG took "<< difftime(tend, tstart) << " second(s)."<< endl;
 
-	cout << "Solution cost: " << elementWithTopClusterings->cost << endl;
+	cout << "Cost of solution (AVG): " << elementWithTopClusterings->cost << endl;
 
 	/** Print cost of solution **/
+	std::set<int>::iterator itA, itB;
 	double value_from_sol = 0.0;
 	for (itA = elementWithTopClusterings->clusterings.begin(); itA != elementWithTopClusterings->clusterings.end(); ++itA) {
 		for (itB = elementWithTopClusterings->clusterings.begin(); itB != elementWithTopClusterings->clusterings.end(); ++itB) {
@@ -334,7 +335,7 @@ int main(int argc, char **argv) {
 			}
 		}
 	}
-	cout << "Cost of solution: " << value_from_sol << endl;
+	cout << "Cost of solution (SUM): " << value_from_sol << endl;
 	
 	return 0;
 }
