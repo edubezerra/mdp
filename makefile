@@ -1,5 +1,7 @@
 RM := rm -rf
 
+DEPS = ./rmcrag/rmcrag.d ./its/ITS.d ./its/ITS_main.d
+
 ITS_SOURCES += ./its/ITS.cpp ./its/main_ITS.cpp 
 
 RMCRAG_SOURCES += ./rmcrag/rmcrag.cpp 
@@ -22,14 +24,14 @@ RMCRAG: $(RMCRAG_EXECUTABLE)
 $(ITS_EXECUTABLE): $(ITS_OBJECTS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C++ Linker'
-	g++  -o "ITS" $(ITS_OBJS)
+	g++ $^ -o $@
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-$(RMCRAG_EXECUTABLE): $(RMCRAG_OBJS)
+$(RMCRAG_EXECUTABLE): $(RMCRAG_OBJECTS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C++ Linker'
-	g++  -o "rmcrag" $(RMCRAG_OBJS)
+	g++ $^ -o $@
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -41,6 +43,6 @@ $(RMCRAG_EXECUTABLE): $(RMCRAG_OBJS)
 	@echo ' '
 
 clean:
-	-$(RM) $(ITS_OBJS)$(RMCRAG_OBJS)$(EXECUTABLES)
+	-$(RM) $(DEPS) $(ITS_OBJECTS) $(RMCRAG_OBJECTS) $(ITS_EXECUTABLE) $(RMCRAG_EXECUTABLE)
 	-@echo ' '
 
