@@ -1,6 +1,6 @@
 RM := rm -rf
 
-DEPS = ./rmcrag/rmcrag.d ./its/ITS.d ./its/ITS_main.d
+DEPS = ./rmcrag/rmcrag.d ./its/ITS.d ./its/main_ITS.d
 
 ITS_SOURCES += ./its/ITS.cpp ./its/main_ITS.cpp 
 
