@@ -324,15 +324,18 @@ int main(int argc, char **argv) {
 	cout << "RMCRAG took "<< difftime(tend, tstart) << " second(s)."<< endl;
 
 	cout << "Solution cost: " << elementWithTopClusterings->cost << endl;
-/*
-	for (i = 1; i <= p; i++) {
-		if ((psol + i)->best_sol != 1)
-			continue;
-		cl_size++;
-		for (int j = i + 1; j <= size; j++)
-			if ((psol + j)->best_sol == 1)
-				value_from_sol += pweight(i,j);
+
+	/** Print cost of solution **/
+	double value_from_sol = 0.0;
+	for (itA = elementWithTopClusterings->clusterings.begin(); itA != elementWithTopClusterings->clusterings.end(); ++itA) {
+		for (itB = elementWithTopClusterings->clusterings.begin(); itB != elementWithTopClusterings->clusterings.end(); ++itB) {
+			if(*itA > *itB) {
+				value_from_sol += pweight[*itA][*itB];
+			}
+		}
 	}
-*/
+	cout << "Cost of solution: " << value_from_sol << endl;
+	
+	return 0;
 }
 
